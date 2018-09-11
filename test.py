@@ -12,7 +12,7 @@ time.sleep(25)
 
 csv_file = open('nbaplayerstats.csv', 'w')
 writer = csv.writer(csv_file)
-header=['PLAYER', 'TEAM', 'AGE', 'GP', 'W', 'L', 'MIN', 'PTS', 'FG%', '3P%','FTM', 'FTA', 'FT%', 'FP', 'DD2', 'TD3', '+/-', 'FGM', 'FGA', '3PM', '3PA', 'OREB', 'DREB', 'REB', 'AST', 'TOV', 'STL', 'BLK', 'PF']
+header=['PLAYER', 'TEAM', 'AGE', 'GP', 'W', 'L', 'MIN', 'PTS', 'FG%', '3P%','FTM', 'FTA', 'FT%', 'DD2', 'TD3', '+/-', 'FGM', 'FGA', '3PM', '3PA', 'OREB', 'DREB', 'REB', 'AST', 'TOV', 'STL', 'BLK', 'PF']
 writer.writerow(header)
 
 players = driver.find_elements_by_xpath('/html/body/main/div[2]/div/div[2]/div/div/nba-stat-table/div[2]/div[2]/table/tbody/tr')
@@ -25,9 +25,8 @@ for index, player in enumerate(players):
     players_dict = collections.OrderedDict()
     link = driver.find_element_by_xpath('/html/body/main/div[2]/div/div[2]/div/div/nba-stat-table/div[2]/div[2]/table/tbody/tr['+str(n)+']/td[2]/a').get_attribute('href')
     links.append(link)
-    print(n)
     print(link)
-    stats.append(driver.find_element_by_xpath('/html/body/main/div[2]/div/div[2]/div/div/nba-stat-table/div[2]/div[2]/table/tbody/tr['+str(n)+']/td[2]/a').text)
+    stats.append(driver.find_element_by_xpath('/html/body/main/div[2]/div/div[2]/div/div/nba-stat-table/div[2]/div[1]/table/tbody/tr['+str(n)+']/td[2]/a').text)
     stats.append(driver.find_element_by_xpath('/html/body/main/div[2]/div/div[2]/div/div/nba-stat-table/div[2]/div[1]/table/tbody/tr['+str(n)+']/td[3]/a').text)
     for i in [4,5,6,7,8,9,12,15,16,17,18,27,28,29,30]:
         stats.append(driver.find_element_by_xpath('/html/body/main/div[2]/div/div[2]/div/div/nba-stat-table/div[2]/div[1]/table/tbody/tr['+str(n)+']/td['+str(i)+']').text)
